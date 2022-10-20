@@ -1,0 +1,22 @@
+server:
+  port: 9091
+spring:
+
+  data:
+    mongodb:
+      host: 34.171.229.29
+      port: 19589
+      database: postappDB
+      username: root
+      password: "C[?K-6)pDZe]ju`-ROi%|or8C!G1ll"
+
+ # datasource:
+ #   url: jdbc:postgresql://localhost:5432/PostDB
+ #   username: postgres
+ #   password:
+ #   driver-class-name: org.postgresql.Driver
+ # jpa:
+ #   hibernate:
+ #     ddl-auto: update
+ #   show-sql: true
+

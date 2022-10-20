@@ -1,0 +1,5 @@
+rootProject.name = 'PostProject'
+include 'post-service'
+include 'postmanagement-service'
+include 'elastic-service'
+

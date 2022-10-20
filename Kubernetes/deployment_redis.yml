@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redisodev
+  labels:
+    team: postdevelopersteam
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pod-redis   
+  template:
+    metadata:
+      labels:
+        app: pod-redis
+    spec:
+      containers:        
+        - image: redis
+          name:  pod-redis
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "0.1"
+            limits:
+              memory: "2Gi"
+              cpu: "0.25"
+          ports:
+            - containerPort: 6379     
+          

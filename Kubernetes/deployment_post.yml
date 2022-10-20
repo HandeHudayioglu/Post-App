@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postdeployment
+  labels:
+    team: postdevelopersteam
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: post-service    
+  template:
+    metadata:
+      labels:
+        app: post-service
+    spec:
+      containers:        
+        - image: handehudayioglu/postapp:v001
+          name:  podpost
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "0.1"
+            limits:
+              memory: "2Gi"
+              cpu: "0.25"
+          ports:
+            - containerPort: 9091     
+          env:
+            - name:  SERVERPORT
+              valueFrom:
+                secretKeyRef:
+                  name: postsecret
+                  key: post_port
+            - name: DBUSERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: postsecret
+                  key: db_username
+            - name: DBPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postsecret
+                  key: db_password
+            - name: DBURL
+              valueFrom:
+                secretKeyRef:
+                  name: postsecret
+                  key: db_url
+            - name: POSTURL
+              valueFrom:
+                secretKeyRef:
+                  name: postsecret
+                  key: post_url
+            
+            

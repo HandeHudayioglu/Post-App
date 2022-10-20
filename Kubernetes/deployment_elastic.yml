@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elasticsearchodev
+  labels:
+    team: postdevelopersteam
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pod-elasticsearch   
+  template:
+    metadata:
+      labels:
+        app: pod-elasticsearch
+    spec:
+      containers:        
+        - image: elasticsearch:7.17.6
+          name:  pod-elasticsearch
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "0.1"
+            limits:
+              memory: "2Gi"
+              cpu: "0.25"
+          ports:
+            - name: elasticone
+              containerPort: 9200
+            - name: elastictwo
+              containerPort: 9300  
+          env:
+            - name: discovery.type
+              value: single-node
+            - name: bootstrap.memory_lock
+              value: "true"
+            - name: "ES_JAVA_OPTS"
+              value: "-Xms1024m -Xmx1024m"

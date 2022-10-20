@@ -1,0 +1,10 @@
+server:
+  port: 9093
+
+spring:
+  elasticsearch:
+    uris: http://localhost:9200
+
+postapplication:
+  url:
+    post: http://localhost:9091/
